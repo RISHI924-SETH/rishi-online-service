@@ -154,23 +154,24 @@ form.addEventListener('submit', async (e) => {
   button.disabled = true;
   message.textContent = 'कृपया प्रतीक्षा करें... आवेदन जमा हो रहा है।';
 
-  const paths = [];
+const paths = [];
 
-  try {
-    for (const file of files) {
-      const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '');
-      const path = crypto.randomUUID() + '-' + safeName;
+try {
+  for (const file of files) {
+    const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '');
+    const path = 'applications/' + crypto.randomUUID() + '-' + safeName;
 
-      const { error } = await supabase.storage
-        .from('application-documents')
-        .upload(path, file, { upsert: false });
+    const { error } = await supabase.storage
+      .from('application-documents')
+      .upload(path, file, { upsert: false });
 
-      if (error) throw error;
-      paths.push(path);
+    if (error) throw error;
+    paths.push(path);
+  }
     }
 
-    const { data, error } = await supabase
-      .from('applications')
+     = await supabase
+      .from('applications')const { data, error }
       .insert([{
         full_name: name,
         mobile: mobile,
