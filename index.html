@@ -169,26 +169,22 @@ try {
     paths.push(path);
   }
     }
+const { error } = await supabase
+  .from('applications')
+  .insert([{
+    full_name: name,
+    mobile: mobile,
+    service_name: service,
+    address: address,
+    document_paths: paths
+  }]);
 
-     = await supabase
-      .from('applications')const { data, error }
-      .insert([{
-        full_name: name,
-        mobile: mobile,
-        service_name: service,
-        address: address,
-        document_paths: paths
-      }])
-      .select('id')
-      .single();
+if (error) throw error;
 
-    if (error) throw error;
+message.textContent =
+  'आपका आवेदन सफलतापूर्वक जमा हो गया है।';
 
-    message.textContent =
-      'आपका आवेदन सफलतापूर्वक जमा हो गया है। Application ID: ' + data.id;
-
-    form.reset();
-
+form.reset();
   } catch (error) {
     message.textContent = 'आवेदन जमा नहीं हुआ: ' + error.message;
   } finally {
