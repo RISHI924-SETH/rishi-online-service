@@ -166,29 +166,36 @@ try {
       .upload(path, file, { upsert: false });
 
     if (error) throw error;
+
     paths.push(path);
   }
-    }
-const { error } = await supabase
-  .from('applications')
-  .insert([{
-    full_name: name,
-    mobile: mobile,
-    service_name: service,
-    address: address,
-    document_paths: paths
-  }]);
 
-if (error) throw error;
+  const { data, error } = await supabase
+    .from('applications')
+    .insert([{
+      full_name: name,
+      mobile: mobile,
+      service_name: service,
+      address: address,
+      document_paths: paths
+    }])
+    .select('id')
+    .single();
 
-message.textContent =
-  'आपका आवेदन सफलतापूर्वक जमा हो गया है।';
+  if (error) throw error;
 
-form.reset();
-  } catch (error) {
-    message.textContent = 'आवेदन जमा नहीं हुआ: ' + error.message;
-  } finally {
-    button.disabled = false;
+  message.textContent =
+    'आपका आवेदन सफलतापूर्वक जमा हो गया है। Application ID: ' + data.id;
+
+  form.reset();
+
+} catch (error) {
+  console.error(error);
+  message.textContent = 'Error: ' + error.message;
+
+} finally {
+  button.disabled = false;
+}
   }
 });
 </script>
