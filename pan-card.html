@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAN Card Application | Rishi Online Service</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fa;color:#17243a}
+header{background:#123d70;color:white;padding:20px;text-align:center}
+header h2{margin:0 0 7px}
+header p{margin:0;font-size:14px}
+.container{max-width:700px;margin:28px auto;padding:15px}
+form{background:white;padding:25px;border-radius:12px;box-shadow:0 4px 18px #0001}
+h3{color:#123d70;border-bottom:1px solid #ddd;padding-bottom:12px}
+label{display:block;font-weight:600;margin:17px 0 7px}
+input,textarea{width:100%;padding:12px;border:1px solid #ccd5df;border-radius:6px;font-size:15px}
+input:focus,textarea:focus{outline:2px solid #8bb9e8}
+small{color:#68778a}
+button{width:100%;padding:14px;background:#123d70;color:white;border:0;border-radius:7px;font-size:16px;font-weight:bold;margin-top:22px}
+.back{display:inline-block;margin:12px 0;color:#1767a6;text-decoration:none}
+footer{text-align:center;color:#68778a;padding:20px;font-size:13px}
+</style>
+</head>
+<body>
+
+<header>
+<h2>RISHI ONLINE SERVICE</h2>
+<p>Dhundhi Katra, Mirzapur | 9115323300</p>
+</header>
+
+<div class="container">
+<a class="back" href="index.html">← Back to Home</a>
+
+<form id="panForm">
+<h3>PAN Card Application Form</h3>
+<p>पैन कार्ड आवेदन के लिए नीचे जानकारी भरें।</p>
+
+<label>Applicant Full Name / आवेदक का पूरा नाम *</label>
+<input name="full_name" type="text" required>
+
+<label>Father's Name / पिता का नाम *</label>
+<input name="father_name" type="text" required>
+
+<label>Date of Birth / जन्म तिथि *</label>
+<input name="dob" type="date" required>
+
+<label>Mobile Number / मोबाइल नंबर *</label>
+<input name="mobile" type="tel" pattern="[0-9]{10}" maxlength="10" required>
+
+<label>Email ID / ईमेल *</label>
+<input name="email" type="email" required>
+
+<label>Full Address / पूरा पता *</label>
+<textarea name="address" rows="3" required></textarea>
+
+<h3>Required Documents / आवश्यक दस्तावेज</h3>
+<label>Passport Size Photo *</label>
+<input name="photo" type="file" accept=".jpg,.jpeg,.png" required>
+
+<label>Aadhaar Card *</label>
+<input name="aadhaar" type="file" accept=".jpg,.jpeg,.png,.pdf" required>
+
+<label>Date of Birth Proof *</label>
+<small>Birth Certificate / Voter ID / High School Marksheet</small>
+<input name="dob_proof" type="file" accept=".jpg,.jpeg,.png,.pdf" required>
+
+<label>Other Document (Optional)</label>
+<input name="other_document" type="file" accept=".jpg,.jpeg,.png,.pdf">
+
+<p><small>केवल PDF, JPG और PNG फाइल। प्रत्येक फाइल अधिकतम 5 MB।</small></p>
+
+<button type="submit">Submit Application</button>
+<p id="message"></p>
+</form>
+</div>
+
+<footer>© 2026 Rishi Online Service</footer>
+
+<script>
+document.getElementById('panForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('message').textContent =
+  'Form design तैयार है। Database connection अगले चरण में जोड़ा जाएगा।';
+});
+</script>
+
+</body>
+</html>
